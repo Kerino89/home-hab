@@ -1,0 +1,27 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "stylelint.enable": true,
+  "css.validate": false,
+  "scss.validate": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "vscode-edge-devtools.webhint": false,
+  "stylelint.packageManager": "pnpm",
+  "stylelint.validate": ["css", "scss", "typescript", "typescriptreact"],
+  "cSpell.ignorePaths": [
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "node_modules",
+    "vscode-extension",
+    ".git/objects",
+    ".vscode",
+    ".vscode-insiders",
+    "locales/**/*",
+    "src/messages/**/*",
+    "public/lang/**/*"
+  ],
+  "cSpell.words": ["commitlint", "nestjs", "stylelint", "svgr", "trpc", "unspaced"]
+}

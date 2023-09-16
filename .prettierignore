@@ -1,0 +1,12 @@
+# dependency
+node_modules
+yarn.lock
+package-lock.json
+
+# build
+build
+
+# next.js
+/public
+/.next/
+/out/

@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "styled-components.vscode-styled-components",
+    "editorconfig.editorconfig",
+    "msjsdiag.debugger-for-edge",
+    "mikestead.dotenv",
+    "mhutchie.git-graph"
+  ]
+}

@@ -1,0 +1,15 @@
+# next.js
+public
+next.config.js
+.next
+out
+
+
+# dependency
+node_modules
+
+# production
+build/**
+
+# common
+.eslintrc.js

@@ -1,0 +1,34 @@
+{
+  "plugins": ["stylelint-order", "stylelint-no-unsupported-browser-features"],
+  "extends": [
+    "stylelint-config-idiomatic-order",
+    "stylelint-config-recommended-scss",
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-prettier"
+  ],
+  "files": ["*.(scss|css)", "**/*.(scss|css)"],
+  "overrides": [{ "customSyntax": "postcss-styled-syntax", "files": ["*.(ts|tsx)", "**/*.(ts|tsx)"] }],
+  "ignoreFiles": ["**/*.d.ts"],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "scss/at-mixin-pattern": null,
+    "scss/dollar-variable-pattern": ["default-", { "ignore": "local" }],
+    "scss/no-global-function-names": null,
+    "scss/operator-no-newline-before": null,
+    "scss/operator-no-newline-after": null,
+    "scss/operator-no-unspaced": null,
+    "selector-max-id": 2,
+    "max-nesting-depth": null,
+    "selector-max-compound-selectors": 5,
+    "order/properties-alphabetical-order": null,
+    "property-no-unknown": [true, { "checkPrefixed": true, "ignoreProperties": ["/-styled-mixin/"] }],
+    "order/order": ["declarations", "custom-properties"],
+    "selector-class-pattern": [
+      "^[a-z0-9\\-\\_]+$",
+      {
+        "message": "Selector should be written in lowercase with hyphens (selector-class-pattern)"
+      }
+    ]
+  }
+}
