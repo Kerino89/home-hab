@@ -1,26 +1,26 @@
 import { type INestApplication, Injectable } from "@nestjs/common";
 import { z } from "zod";
 import { TRPCService } from "./trpc.service";
+import { DirectoryInfoService } from "@server/modules/directory-info";
 import * as trpcExpress from "@trpc/server/adapters/express";
+
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 
 @Injectable()
 export class TRPCRouter {
-  constructor(private readonly trpc: TRPCService) {}
+  constructor(
+    private readonly _trpc: TRPCService,
+    private readonly _directoryInfoService: DirectoryInfoService,
+  ) {}
 
-  public appRouter = this.trpc.router({
-    hello: this.trpc.procedure
+  public appRouter = this._trpc.router({
+    readDir: this._trpc.procedure
       .input(
         z.object({
-          name: z.string().optional(),
+          path: z.string().optional(),
         }),
       )
-      .query(({ input }) => {
-        const { name } = input;
-
-        return {
-          greeting: `Hello ${name ? name : `Bilbo`}`,
-        };
-      }),
+      .query(({ input }) => this._directoryInfoService.readDir(input)),
   });
 
   public async applyMiddleware(app: INestApplication) {
@@ -34,3 +34,5 @@ export class TRPCRouter {
 }
 
 export type AppRouter = TRPCRouter["appRouter"];
+export type RouterInput = inferRouterInputs<AppRouter>;
+export type RouterOutput = inferRouterOutputs<AppRouter>;
