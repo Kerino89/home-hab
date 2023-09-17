@@ -1,7 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import "@client/styles/global.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+import { App } from "antd";
+import { ReactQueryProvider } from "@client/libs/react-query-provider";
+import { AntdConfigProvider } from "@client/libs/antd-config-provider";
+import { StyledComponentsRegistry } from "@client/libs/styled-components-registry";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,7 +14,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="ru">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <StyledComponentsRegistry>
+          <ReactQueryProvider>
+            <AntdConfigProvider>
+              <App>{children}</App>
+            </AntdConfigProvider>
+          </ReactQueryProvider>
+        </StyledComponentsRegistry>
+      </body>
     </html>
   );
 }

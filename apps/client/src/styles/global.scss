@@ -1,0 +1,64 @@
+@import "fonts";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  cursor: default;
+  line-height: 1.5;
+  tab-size: 4;
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+  word-break: break-word;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+nav ol,
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+pre {
+  overflow: auto;
+  font-family: monospace;
+  font-size: 1em;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+svg:not([fill]) {
+  fill: currentColor;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #f0f2f5;
+  color: #7b7b7b;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

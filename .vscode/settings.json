@@ -23,5 +23,16 @@
     "src/messages/**/*",
     "public/lang/**/*"
   ],
-  "cSpell.words": ["commitlint", "nestjs", "stylelint", "svgr", "trpc", "unspaced"]
+  "cSpell.words": [
+    "antd",
+    "commitlint",
+    "cssinjs",
+    "nestjs",
+    "Sider",
+    "stylelint",
+    "svgr",
+    "tanstack",
+    "trpc",
+    "unspaced"
+  ]
 }

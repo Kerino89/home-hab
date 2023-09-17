@@ -1,0 +1,91 @@
+@use "sass:math";
+
+$default-fontSize: 16;
+
+@function to-fixed($float, $digits: 2) {
+  $sass-precision: 5;
+
+  @if $digits > $sass-precision {
+    @warn "Sass sets default precision to #{$sass-precision} digits, and there is no way to change that for now."
+      + "The returned number will have #{$sass-precision} digits, even if you asked for `#{$digits}`."
+      + "See https://github.com/sass/sass/issues/1122 for further informations.";
+  }
+
+  $pow: math.pow(10, $digits);
+  @return math.div(math.round($float * $pow), $pow);
+}
+
+@function between($fromSize, $toSize, $minScreen, $maxScreen) {
+  @if (unitless($maxScreen)) {
+    $maxScreen: $maxScreen * 1px;
+  }
+
+  @if (unitless($minScreen)) {
+    $minScreen: $minScreen * 1px;
+  }
+
+  @if (unitless($fromSize)) {
+    $fromSize: $fromSize * 1px;
+  }
+
+  @if (unitless($toSize)) {
+    $toSize: $toSize * 1px;
+  }
+
+  $slope: math.div(($fromSize - $toSize), ($minScreen - $maxScreen));
+  $base: $toSize - $slope * $maxScreen;
+
+  @return calc(#{to-fixed($base)} + #{to-fixed(100 * $slope)}vw);
+}
+
+@function rem($size, $context: $default-fontSize) {
+  @if (unitless($size)) {
+    $size: $size * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return math.div($size, $context) * 1rem;
+}
+
+@function em($size, $context: $default-fontSize) {
+  @if (unitless($size)) {
+    $size: $size * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return math.div($size, $context) * 1em;
+}
+
+@mixin respond-to($media) {
+  @if $media == xxlarge {
+    @media screen and (max-width: 1300px) {
+      @content;
+    }
+  } @else if $media == xlarge {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+  } @else if $media == large {
+    @media screen and (max-width: 992px) {
+      @content;
+    }
+  } @else if $media == medium {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  } @else if $media == small {
+    @media screen and (max-width: 576px) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $media) {
+      @content;
+    }
+  }
+}
