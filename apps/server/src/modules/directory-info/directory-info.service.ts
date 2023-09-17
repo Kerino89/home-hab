@@ -22,9 +22,11 @@ export class DirectoryInfoService {
         dirList.map((dir) => this.createDirAndFileStat(join(path, dir))),
       );
 
-      return result
-        .filter(({ status }) => status === "fulfilled")
-        .map((p) => p.status === "fulfilled" && p.value);
+      return result.reduce((arr, p) => {
+        if (p.status === "fulfilled") arr.push(p.value);
+
+        return arr;
+      }, [] as Array<DirAndFileStatModel>);
     }
   }
 
