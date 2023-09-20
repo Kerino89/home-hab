@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  width: 80px;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 4px;
+  user-select: none;
+}
+
+.icon {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-height: 100%;
+  }
+}
+
+.text {
+  color: currentColor;
+  text-align: center;
+}
