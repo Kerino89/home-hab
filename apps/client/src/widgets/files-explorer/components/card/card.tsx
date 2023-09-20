@@ -1,7 +1,7 @@
 "use client";
 
 import { clsx } from "clsx";
-import { theme } from "antd";
+import { theme, Tooltip } from "antd";
 import { FileIcon } from "react-file-icon";
 import { FcFolder } from "react-icons/fc";
 
@@ -29,7 +29,9 @@ export const Card: React.FC<CardProps> = ({ className, name, ext, isFile, onDoub
         )}
       </div>
 
-      <span className={styles.text}>{name}</span>
+      <Tooltip title={name} mouseEnterDelay={0.4}>
+        <span className={styles.text}>{name}</span>
+      </Tooltip>
     </div>
   );
 };

@@ -1,3 +1,11 @@
 .wrapper {
   min-height: 100vh !important;
 }
+
+.container {
+  overflow: auto;
+  height: 0;
+  padding: 24px;
+  border-radius: 4px;
+  margin: 16px;
+}

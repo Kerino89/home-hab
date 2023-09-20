@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  overflow: hidden;
   width: 80px;
   flex-flow: column;
   align-items: center;
@@ -22,6 +23,13 @@
 }
 
 .text {
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
   color: currentColor;
+  font-size: 14px;
+  -webkit-line-clamp: 2;
+  line-height: 120%;
   text-align: center;
 }

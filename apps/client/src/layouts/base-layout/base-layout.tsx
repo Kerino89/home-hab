@@ -60,14 +60,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, navList }) => 
           />
         </Layout.Header>
 
-        <Layout.Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
+        <Layout.Content className={styles.container} style={{ background: colorBgContainer }}>
           {children}
         </Layout.Content>
       </Layout>
