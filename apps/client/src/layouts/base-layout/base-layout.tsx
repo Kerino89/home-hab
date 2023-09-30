@@ -19,7 +19,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, navList }) => 
   } = theme.useToken();
 
   const selectedKeys = React.useMemo(() => {
-    const [path = ""] = removePublicUrl(location.pathname)
+    const [path = ""] = removePublicUrl(pathname)
       .split("/")
       .filter((path) => !isEmpty(path));
 
