@@ -1,4 +1,4 @@
-import { IDirAndFileStat } from "../directory-info.interface";
+import { IDirAndFileStat } from "../directory.interface";
 
 export class DirAndFileStatModel implements IDirAndFileStat {
   public ext: string | null = null;

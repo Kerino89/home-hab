@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TRPCModule } from "@server/modules/trpc";
 import { FileModule } from "@server/modules/file";
-import { DirectoryInfoModule } from "@server/modules/directory-info";
+import { DirectoryModule } from "@server/modules/directory";
 
 import * as config from "@server/config";
 
@@ -10,7 +10,7 @@ import * as config from "@server/config";
   imports: [
     TRPCModule,
     FileModule,
-    DirectoryInfoModule,
+    DirectoryModule,
     ConfigModule.forRoot({ isGlobal: true, load: Object.values(config) }),
   ],
   controllers: [],

@@ -1,7 +1,7 @@
 import { type INestApplication, Injectable } from "@nestjs/common";
 import { z } from "zod";
 import { TRPCService } from "./trpc.service";
-import { DirectoryInfoService } from "@server/modules/directory-info";
+import { DirectoryService } from "@server/modules/directory";
 import * as trpcExpress from "@trpc/server/adapters/express";
 
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
@@ -10,7 +10,7 @@ import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 export class TRPCRouter {
   constructor(
     private readonly _trpc: TRPCService,
-    private readonly _directoryInfoService: DirectoryInfoService,
+    private readonly _directoryService: DirectoryService,
   ) {}
 
   public appRouter = this._trpc.router({
@@ -20,7 +20,7 @@ export class TRPCRouter {
           path: z.string().optional(),
         }),
       )
-      .query(({ input }) => this._directoryInfoService.readDir(input)),
+      .query(({ input }) => this._directoryService.readDir(input)),
   });
 
   public async applyMiddleware(app: INestApplication) {

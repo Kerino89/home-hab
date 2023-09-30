@@ -1,7 +1,7 @@
 import { resolve, sep, normalize, join, parse } from "node:path";
 import { readdir, stat } from "node:fs/promises";
-import { existsSync, createReadStream } from "node:fs";
-import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
+import { existsSync } from "node:fs";
+import { Inject, Injectable } from "@nestjs/common";
 import { DirAndFileStatModel } from "./models/dir-and-file-stat.model";
 import { DirectoryDto } from "./dto/directory.dto";
 
@@ -9,7 +9,7 @@ import { storageConfig } from "@server/config";
 import type { ConfigType } from "@nestjs/config";
 
 @Injectable()
-export class DirectoryInfoService {
+export class DirectoryService {
   constructor(@Inject(storageConfig.KEY) private readonly _storageConfig: ConfigType<typeof storageConfig>) {}
 
   public async readDir({ path = "" }: DirectoryDto) {
@@ -28,16 +28,6 @@ export class DirectoryInfoService {
         return arr;
       }, [] as Array<DirAndFileStatModel>);
     }
-  }
-
-  public readFile(path: string) {
-    const newPath = this.generatePath(path);
-
-    if (!existsSync(newPath)) {
-      throw new HttpException("The path to the file is not specified", HttpStatus.NOT_FOUND);
-    }
-
-    return createReadStream(newPath);
   }
 
   private generatePath(path: string) {
