@@ -4,7 +4,6 @@ next.config.js
 .next
 out
 
-
 # dependency
 node_modules
 
@@ -13,3 +12,6 @@ build/**
 
 # common
 .eslintrc.js
+
+# test
+jest.config.js
