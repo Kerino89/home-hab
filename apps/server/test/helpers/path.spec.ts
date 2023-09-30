@@ -1,4 +1,4 @@
-import { validateNamespacePath } from "../../src/helpers/path";
+import { validateNamespacePath } from "@server/helpers/path";
 
 describe("Helper (path):", () => {
   it("remains at the root level", () => {
