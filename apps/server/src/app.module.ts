@@ -1,6 +1,8 @@
 import { Module } from "@nestjs/common";
+import { APP_GUARD } from "@nestjs/core";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { TRPCModule } from "@server/modules/trpc";
 import { FileModule } from "@server/modules/file";
 import { UsersModule } from "@server/modules/users";
@@ -12,6 +14,12 @@ import * as config from "@server/config";
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: Object.values(config) }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 5 * 60 * 1000,
+        limit: 10,
+      },
+    ]),
     TypeOrmModule.forRoot({
       type: "postgres",
       host: (process.env.POSTGRES_HOST ||= "localhost"),
@@ -29,6 +37,11 @@ import * as config from "@server/config";
     DirectoryModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}
