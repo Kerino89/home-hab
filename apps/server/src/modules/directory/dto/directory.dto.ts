@@ -1,3 +1,6 @@
+import { ApiProperty } from "@nestjs/swagger";
+
 export class DirectoryDto {
-  path?: string;
+  @ApiProperty({ nullable: false, default: "" })
+  path?: string = "";
 }
