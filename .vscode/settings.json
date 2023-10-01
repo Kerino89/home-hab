@@ -36,6 +36,7 @@
     "svgr",
     "tanstack",
     "trpc",
+    "typeorm",
     "unspaced"
   ]
 }
