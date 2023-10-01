@@ -1,6 +1,7 @@
-import { resolve, sep, normalize, join, parse } from "node:path";
+import { resolve, join, parse } from "node:path";
 import { readdir, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { validateNamespacePath } from "@server/helpers/path";
 import { Inject, Injectable } from "@nestjs/common";
 import { DirAndFileStatModel } from "./models/dir-and-file-stat.model";
 import { DirectoryDto } from "./dto/directory.dto";
@@ -13,10 +14,11 @@ export class DirectoryService {
   constructor(@Inject(storageConfig.KEY) private readonly _storageConfig: ConfigType<typeof storageConfig>) {}
 
   public async readDir({ path = "" }: DirectoryDto) {
-    const newPath = this.generatePath(path);
+    const { pathStorageFiles } = this._storageConfig;
+    const newPath = resolve(pathStorageFiles, path);
 
-    if (existsSync(newPath)) {
-      const dirList = await readdir(this.generatePath(path));
+    if (validateNamespacePath(pathStorageFiles, newPath) && existsSync(newPath)) {
+      const dirList = await readdir(newPath);
 
       const result = await Promise.allSettled(
         dirList.map((dir) => this.createDirAndFileStat(join(path, dir))),
@@ -30,16 +32,9 @@ export class DirectoryService {
     }
   }
 
-  private generatePath(path: string) {
-    const pathArr = normalize(path)
-      .split(sep)
-      .filter((path) => !path.includes(".."));
-
-    return resolve(this._storageConfig.pathStorageFiles, ...pathArr);
-  }
-
   private async createDirAndFileStat(path: string) {
-    const dirStat = await stat(this.generatePath(path));
+    const newPath = resolve(this._storageConfig.pathStorageFiles, path);
+    const dirStat = await stat(newPath);
     const { name, ext } = parse(path);
 
     return new DirAndFileStatModel({
