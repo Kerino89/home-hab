@@ -8,6 +8,7 @@ import { FileModule } from "@server/modules/file";
 import { UsersModule } from "@server/modules/users";
 import { RolesModule } from "@server/modules/roles";
 import { RedisModule } from "@liaoliaots/nestjs-redis";
+import { AuthenticationModule } from "@server/modules/authentication";
 import { DirectoryModule } from "@server/modules/directory";
 
 import * as config from "@server/config";
@@ -46,6 +47,7 @@ import * as config from "@server/config";
     UsersModule,
     RolesModule,
     DirectoryModule,
+    AuthenticationModule,
   ],
   controllers: [],
   providers: [

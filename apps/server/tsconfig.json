@@ -4,6 +4,7 @@
     "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "target": "ES2021",
     "sourceMap": true,
