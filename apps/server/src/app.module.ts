@@ -7,6 +7,7 @@ import { TRPCModule } from "@server/modules/trpc";
 import { FileModule } from "@server/modules/file";
 import { UsersModule } from "@server/modules/users";
 import { RolesModule } from "@server/modules/roles";
+import { RedisModule } from "@liaoliaots/nestjs-redis";
 import { DirectoryModule } from "@server/modules/directory";
 
 import * as config from "@server/config";
@@ -29,6 +30,16 @@ import * as config from "@server/config";
       database: (process.env.POSTGRES_DB ||= "postgres"),
       synchronize: true,
       autoLoadEntities: true,
+    }),
+    RedisModule.forRoot({
+      closeClient: true,
+      readyLog: true,
+      config: {
+        db: parseInt((process.env.REDIS_DB ||= "0"), 10),
+        port: parseInt((process.env.REDIS_PORT ||= "6379"), 10),
+        host: (process.env.REDIS_HOST ||= "localhost"),
+        password: (process.env.REDIS_PASS ||= "redis"),
+      },
     }),
     TRPCModule,
     FileModule,
