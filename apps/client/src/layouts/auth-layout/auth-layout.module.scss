@@ -1,0 +1,18 @@
+.wrapper {
+  min-height: 100vh !important;
+}
+
+.content {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.body {
+  width: 300px;
+}
+
+.footer {
+  text-align: center;
+}

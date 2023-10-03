@@ -1,0 +1,26 @@
+"use client";
+
+import * as React from "react";
+import { clsx } from "clsx";
+
+import { Layout, Divider } from "antd";
+import styles from "./auth-layout.module.scss";
+import type { AuthLayoutProps } from "./auth-layout.interface";
+
+export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, className, title }) => {
+  const { current: year } = React.useRef(new Date().getFullYear());
+
+  return (
+    <Layout className={clsx(styles.wrapper, className)}>
+      <Layout.Content className={styles.content}>
+        <div className={styles.body}>
+          <Divider orientation="center">{title}</Divider>
+
+          {children}
+        </div>
+      </Layout.Content>
+
+      <Layout.Footer className={styles.footer}>{year}</Layout.Footer>
+    </Layout>
+  );
+};
