@@ -106,6 +106,12 @@ importers:
       dayjs:
         specifier: ^1.11.9
         version: 1.11.10
+      jwt-decode:
+        specifier: ^3.1.2
+        version: 3.1.2
+      ky:
+        specifier: ^1.0.1
+        version: 1.0.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2144,6 +2150,7 @@ packages:
         integrity: sha512-vJSncmnzwMvpr3lIcm0I8YVVDJTzyjy7NZAeXbTXy+MPUdAr9pKyyg7Tx/ebOQ9kqzE6O9WT6jg2164br5UdsQ==,
       }
     engines: { node: ">=v14" }
+    requiresBuild: true
     dependencies:
       "@commitlint/types": 17.4.4
       ajv: 8.12.0
@@ -2170,6 +2177,7 @@ packages:
         integrity: sha512-LIgYXuCSO5Gvtc0t9bebAMSwd68ewzmqLypqI2Kke1rqOqqDbMpYcYfoPfFlv9eyLIh4jocHWwCK5FS7z9icUA==,
       }
     engines: { node: ">=v14" }
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@17.4.4:
@@ -2273,6 +2281,7 @@ packages:
         integrity: sha512-PfeoAwLHtbOaC9bGn/FADN156CqkFz6ZKiVDMjuC2N5N0740Ke56rKU7Wxdwya8R8xzLK9vZzHgNbuGhaOVKIg==,
       }
     engines: { node: ">=v14" }
+    requiresBuild: true
     dependencies:
       "@commitlint/config-validator": 17.6.7
       "@commitlint/types": 17.4.4
@@ -4076,6 +4085,7 @@ packages:
       {
         integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg==,
       }
+    requiresBuild: true
     dev: true
 
   /@types/node@20.8.2:
@@ -6203,6 +6213,7 @@ packages:
         integrity: sha512-BabizFdC3wBHhbI4kJh0VkQP9GkBfoHPydD0COMce1nJ1kJAB3F2TmJ/I7diULBKtmEWSwEbuN/KDtgnmUUVmw==,
       }
     engines: { node: ">=v14.21.3" }
+    requiresBuild: true
     peerDependencies:
       "@types/node": "*"
       cosmiconfig: ">=7"
@@ -10013,6 +10024,13 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
+  /jwt-decode@3.1.2:
+    resolution:
+      {
+        integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==,
+      }
+    dev: false
+
   /keyv@4.5.3:
     resolution:
       {
@@ -10050,6 +10068,14 @@ packages:
       {
         integrity: sha512-Xq9nH7KlWZmXAtodXDDRE7vs6DU1gTU8zYDHDiWLSip45Egwq3plLHzPn27NgvzL2r1LMPC1vdqh98sQxtqj4A==,
       }
+    dev: false
+
+  /ky@1.0.1:
+    resolution:
+      {
+        integrity: sha512-UvcwpQO0LOuZwG0Ti3VDo6w57KYt+r4bWEYlNaMt82hgyFtse86QtOGum1RzsZni31FndXQl6NvtDArfunt2JQ==,
+      }
+    engines: { node: ">=18" }
     dev: false
 
   /language-subtag-registry@0.3.22:
@@ -10223,6 +10249,7 @@ packages:
       {
         integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==,
       }
+    requiresBuild: true
     dev: true
 
   /lodash.kebabcase@4.1.1:
@@ -10258,6 +10285,7 @@ packages:
       {
         integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==,
       }
+    requiresBuild: true
     dev: true
 
   /lodash.snakecase@4.1.1:
@@ -10286,6 +10314,7 @@ packages:
       {
         integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==,
       }
+    requiresBuild: true
     dev: true
 
   /lodash.uniqueid@4.0.1:
