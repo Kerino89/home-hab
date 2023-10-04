@@ -1,6 +1,7 @@
 import "@client/styles/global.scss";
 
 import { App } from "antd";
+import { AuthProvider } from "@client/services/auth";
 import { ReactQueryProvider } from "@client/libs/react-query-provider";
 import { AntdConfigProvider } from "@client/libs/antd-config-provider";
 import { StyledComponentsRegistry } from "@client/libs/styled-components-registry";
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <StyledComponentsRegistry>
           <ReactQueryProvider>
             <AntdConfigProvider>
-              <App>{children}</App>
+              <AuthProvider>
+                <App>{children}</App>
+              </AuthProvider>
             </AntdConfigProvider>
           </ReactQueryProvider>
         </StyledComponentsRegistry>
