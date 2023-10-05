@@ -8,6 +8,11 @@ export interface AuthJWT {
   tokenType?: string;
 }
 
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
 export interface AuthContextValue extends AuthState {
   getAuth: HandlerGetAuth;
 }
