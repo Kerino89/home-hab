@@ -25,8 +25,10 @@ export class AuthControl {
     this._eventEmitter.emit(AuthControl.EVENT_TYPE_UPDATE_FORBIDDEN, this._forbidden);
   }
 
-  public get isForbidden(): boolean {
-    return this._forbidden;
+  public getAuthCookie(): string {
+    if (!this._auth) return "";
+
+    return `${this._auth.tokenType} ${this._auth.accessToken}`;
   }
 
   public get isAuth(): boolean {
