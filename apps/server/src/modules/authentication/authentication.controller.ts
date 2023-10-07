@@ -1,4 +1,16 @@
-import { Body, Controller, Ip, Post, Res, Req, HttpCode, HttpStatus, Get } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Ip,
+  Post,
+  Res,
+  Req,
+  HttpCode,
+  HttpStatus,
+  Get,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+} from "@nestjs/common";
 import { User } from "@server/modules/users";
 import { Cookies } from "@server/decorators/cookies.decorator";
 import { Public } from "@server/decorators/public.decorator";
@@ -21,6 +33,7 @@ export class AuthenticationController {
   ) {}
 
   @Get("profile")
+  @UseInterceptors(ClassSerializerInterceptor)
   public async getProfile(@Req() request: Request): Promise<User | null> {
     return "user" in request ? (request.user as User) : null;
   }

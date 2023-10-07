@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { WinstonModule, utilities as nestWinstonUtilities } from "nest-winston";
 import { AppModule } from "./app.module";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { ValidationPipe } from "@nestjs/common";
 import { TRPCRouter } from "@server/modules/trpc";
 
 import * as winston from "winston";
@@ -42,6 +43,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors();
+  app.useGlobalPipes(new ValidationPipe());
 
   trpc.applyMiddleware(app);
 
