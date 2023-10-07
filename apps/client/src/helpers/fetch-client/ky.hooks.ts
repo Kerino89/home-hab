@@ -8,17 +8,17 @@ export const afterResponseAuth: AfterResponseHook = (request, options, response)
 };
 
 export const beforeRequestAuth: BeforeRequestHook = (request) => {
-  const { auth } = authControl;
+  const { isAuth } = authControl;
 
-  if (auth) {
-    request.headers.set("Authorization", `${auth.tokenType} ${auth.accessToken}`);
+  if (isAuth) {
+    request.headers.set("Authorization", authControl.getAuthCookie());
   }
 };
 
 export const beforeRetryAuth: BeforeRetryHook = ({ request }) => {
-  const { auth } = authControl;
+  const { isAuth } = authControl;
 
-  if (auth) {
-    request.headers.set("Authorization", `${auth.tokenType} ${auth.accessToken}`);
+  if (isAuth) {
+    request.headers.set("Authorization", authControl.getAuthCookie());
   }
 };
