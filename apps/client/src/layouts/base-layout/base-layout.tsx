@@ -1,17 +1,22 @@
 "use client";
 
 import React from "react";
+import { useProfile } from "@client/services/user";
+import { useAuth } from "@client/services/auth";
 import { isEmpty } from "lodash";
 import { createPathnameWithPublicUrl, removePublicUrl } from "@client/helpers/url";
 import { usePathname } from "next/navigation";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
+import { UserInfo } from "./components/user-info";
 import Link from "next/link";
 import type { BaseLayoutProps } from "./base-layout.interface";
 
 import styles from "./base-layout.module.scss";
 
 export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, navList }) => {
+  const { data: user, isLoading } = useProfile();
+  const { logout } = useAuth();
   const [collapsed, setCollapsed] = React.useState(true);
   const pathname = usePathname();
   const {
@@ -25,6 +30,16 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, navList }) => 
 
     return [pathname, createPathnameWithPublicUrl(path)];
   }, [pathname]);
+
+  const getPropsUserInfo = () => {
+    if (!user) return {};
+
+    const { firstName, lastName } = user;
+
+    return {
+      fullName: [lastName, firstName].filter(Boolean).join(" "),
+    };
+  };
 
   return (
     <Layout className={styles.wrapper}>
@@ -47,7 +62,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, navList }) => 
       </Layout.Sider>
 
       <Layout>
-        <Layout.Header style={{ padding: 0, background: colorBgContainer }}>
+        <Layout.Header className={styles.header} style={{ background: colorBgContainer }}>
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -58,6 +73,8 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, navList }) => 
               height: 64,
             }}
           />
+
+          <UserInfo {...getPropsUserInfo()} onLogout={logout} loading={isLoading} />
         </Layout.Header>
 
         <Layout.Content className={styles.container} style={{ background: colorBgContainer }}>

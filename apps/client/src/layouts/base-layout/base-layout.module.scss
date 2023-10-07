@@ -9,3 +9,10 @@
   border-radius: 4px;
   margin: 16px;
 }
+
+.header {
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px 0 0 !important;
+}

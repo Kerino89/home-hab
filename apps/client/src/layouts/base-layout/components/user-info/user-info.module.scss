@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 52px;
+  line-height: normal;
+  text-align: right;
+}
+
+.button {
+  display: flex;
+  height: auto;
+  align-items: center;
+  padding: 0 !important;
+}
+
+.avatar {
+  position: absolute;
+  right: 0;
+}
+
+.role {
+  font-size: 12px;
+}
