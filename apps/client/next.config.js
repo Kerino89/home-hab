@@ -42,6 +42,14 @@ module.exports = () => {
     sassOptions: {
       includePaths: [resolveRoot("src", "styles", "common")],
     },
+    async rewrites() {
+      return [
+        {
+          source: "/api/:path*",
+          destination: "http://localhost:5000/api/:path*",
+        },
+      ];
+    },
     webpack(config) {
       config.plugins.push(
         new StylelintPlugin({
