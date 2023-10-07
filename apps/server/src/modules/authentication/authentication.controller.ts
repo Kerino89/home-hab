@@ -83,12 +83,19 @@ export class AuthenticationController {
   }
 
   @Post("logout")
+  @Public()
   @HttpCode(HttpStatus.OK)
-  public async logout(@Cookies(Cookie.Refresh) refreshToken: string) {
-    this._tokenService.removeSession(refreshToken);
+  public async logout(
+    @Cookies(Cookie.Refresh) refreshToken: string,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    if (await this._tokenService.removeSession(refreshToken)) {
+      response.clearCookie(Cookie.Refresh);
+    }
   }
 
   @Post("refresh")
+  @Public()
   @HttpCode(HttpStatus.OK)
   public async refresh(
     @Body() refreshDto: RefreshTokenDto,
