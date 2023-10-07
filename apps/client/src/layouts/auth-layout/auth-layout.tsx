@@ -8,8 +8,6 @@ import styles from "./auth-layout.module.scss";
 import type { AuthLayoutProps } from "./auth-layout.interface";
 
 export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, className, title }) => {
-  const { current: year } = React.useRef(new Date().getFullYear());
-
   return (
     <Layout className={clsx(styles.wrapper, className)}>
       <Layout.Content className={styles.content}>
@@ -19,8 +17,6 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, className, tit
           {children}
         </div>
       </Layout.Content>
-
-      <Layout.Footer className={styles.footer}>{year}</Layout.Footer>
     </Layout>
   );
 };
