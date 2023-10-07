@@ -1,5 +1,7 @@
-import { Body, Controller, Ip, Post, Res, Req, HttpCode, HttpStatus } from "@nestjs/common";
+import { Body, Controller, Ip, Post, Res, Req, HttpCode, HttpStatus, Get } from "@nestjs/common";
+import { User } from "@server/modules/users";
 import { Cookies } from "@server/decorators/cookies.decorator";
+import { Public } from "@server/decorators/public.decorator";
 import { AuthenticationService } from "./services/authentication.service";
 import { TokenService } from "./services/token.service";
 import { RegistrationUserDto } from "./dto/registration-user.dto";
@@ -18,7 +20,13 @@ export class AuthenticationController {
     private readonly _tokenService: TokenService,
   ) {}
 
+  @Get("profile")
+  public async getProfile(@Req() request: Request): Promise<User | null> {
+    return "user" in request ? (request.user as User) : null;
+  }
+
   @Post("registration")
+  @Public()
   @HttpCode(HttpStatus.CREATED)
   public async registration(
     @Body() userDto: RegistrationUserDto,
@@ -40,6 +48,7 @@ export class AuthenticationController {
   }
 
   @Post("login")
+  @Public()
   @HttpCode(HttpStatus.OK)
   public async authenticate(
     @Body() userDto: LoginUserDto,
