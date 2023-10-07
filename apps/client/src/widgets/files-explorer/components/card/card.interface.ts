@@ -1,9 +1,6 @@
-import type { IDirAndFileStat } from "@server/modules/directory-info";
+import type { DirAndFileStatResponse } from "@client/services/directory";
 
-export interface CardProps extends Omit<IDirAndFileStat, "openDate" | "createDate" | "updateDate"> {
+export interface CardProps extends DirAndFileStatResponse {
   className?: string;
-  openDate: string | null;
-  createDate: string | null;
-  updateDate: string | null;
   onDoubleClick?: React.MouseEventHandler<HTMLDivElement>;
 }

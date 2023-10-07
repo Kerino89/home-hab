@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Breadcrumb, Spin, Empty } from "antd";
-import { useReadDir } from "@client/services/directory-info";
+import { useReadDir } from "@client/services/directory";
 import { Card } from "./components/card";
 import { HomeOutlined } from "@ant-design/icons";
 import styles from "./files-explorer.module.scss";
