@@ -19,7 +19,7 @@ import * as config from "@server/config";
     ThrottlerModule.forRoot([
       {
         ttl: 5 * 60 * 1000,
-        limit: 10,
+        limit: 100,
       },
     ]),
     TypeOrmModule.forRoot({
