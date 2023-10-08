@@ -12,3 +12,9 @@ export const logout = async () => {
 
   return status === 200;
 };
+
+export const refresh = async (): Promise<{ accessToken: string }> => {
+  const response = await ky.post("/api/auth/refresh");
+
+  return response.json();
+};

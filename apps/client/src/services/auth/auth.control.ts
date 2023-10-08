@@ -45,7 +45,7 @@ export class AuthControl {
     try {
       const { exp } = jwtDecode<{ exp: number }>(this._auth.accessToken);
 
-      return Date.now() >= exp * 1000;
+      return Date.now() < exp * 1000;
     } catch (error) {
       return false;
     }
