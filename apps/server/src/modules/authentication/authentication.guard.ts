@@ -19,9 +19,7 @@ export class AuthenticationGuard implements CanActivate {
       context.getClass(),
     ]);
 
-    if (isPublic) {
-      return true;
-    }
+    if (isPublic) return true;
 
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);

@@ -69,7 +69,7 @@ export class AuthenticationService {
 
   public async validateRefreshToken({
     token,
-    fingerprint,
+    fingerprint = "",
   }: Pick<SessionModel, "token" | "fingerprint">): Promise<SessionModel> {
     const session = await this._tokenService.getSessionByToken(token);
 
