@@ -12,6 +12,7 @@ import {
   ClassSerializerInterceptor,
 } from "@nestjs/common";
 import { User } from "@server/modules/users";
+import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { Cookies } from "@server/decorators/cookies.decorator";
 import { Public } from "@server/decorators/public.decorator";
 import { AuthenticationService } from "./services/authentication.service";
@@ -25,6 +26,7 @@ import { Cookie } from "./authentication.const";
 
 import type { Response, Request } from "express";
 
+@ApiTags("Auth")
 @Controller("api/auth")
 export class AuthenticationController {
   constructor(
@@ -33,6 +35,8 @@ export class AuthenticationController {
   ) {}
 
   @Get("profile")
+  @ApiOperation({ summary: "Getting the current user" })
+  @ApiResponse({ status: HttpStatus.OK, type: User })
   @UseInterceptors(ClassSerializerInterceptor)
   public async getProfile(@Req() request: Request): Promise<User | null> {
     return "user" in request ? (request.user as User) : null;
