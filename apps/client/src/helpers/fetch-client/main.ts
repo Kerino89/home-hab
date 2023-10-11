@@ -5,7 +5,7 @@ import { afterResponseAuth, beforeRequestAuth, beforeRetryAuth } from "./ky.hook
  * Экземпляр Fetch для основного backend.
  */
 export const fetchMain = ky.create({
-  prefixUrl: process.env.MAIN_API_URL || "http://localhost:5000",
+  prefixUrl: process.env.MAIN_API_URL,
   throwHttpErrors: true,
   hooks: {
     beforeRequest: [beforeRequestAuth],
