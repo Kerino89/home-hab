@@ -1,5 +1,5 @@
-import jwtDecode from "jwt-decode";
 import { isNull } from "lodash";
+import { isValidToken } from "./auth.utils";
 import { EventEmitter } from "@client/libs/event-emitter";
 import type { AuthJWT } from "./auth.interface";
 
@@ -40,15 +40,7 @@ export class AuthControl {
   }
 
   public get isValidAccessToken(): boolean {
-    if (!this._auth?.accessToken) return false;
-
-    try {
-      const { exp } = jwtDecode<{ exp: number }>(this._auth.accessToken);
-
-      return Date.now() < exp * 1000;
-    } catch (error) {
-      return false;
-    }
+    return isValidToken(this._auth?.accessToken);
   }
 
   public on(
